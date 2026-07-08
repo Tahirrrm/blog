@@ -20,15 +20,17 @@ class LoginView(View):
             }
         )
     def post(self,request):
-        return render(
-            request,
-            self.template_name,
-            {
-                "username_value": request.POST.get("username","").strip(),
-                "errors": form.errors,
-                "non_field_errors": form.non_field_errors()
-            }
-        )
+        form =AuthenticationForm(request,data=request.POST)
+        if not form.is_valid():
+            return render(
+                request,
+                self.template_name,
+                {
+                    "username_value": request.POST.get("username","").strip(),
+                    "errors": form.errors,
+                    "non_field_errors": form.non_field_errors()
+                }
+            )
 
         login(request,form.get_user())
         messages.success(request, "Вход выполнен")
