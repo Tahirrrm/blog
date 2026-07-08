@@ -26,8 +26,8 @@ urlpatterns = [
     # path("register/",views.user_register),
     # path("post_form/",views.post_form),
     # path("favorite_list/",views.favorite_list),
-    path("account/", include("users.urls")),
-    path("posts/", include("posts.urls")),
+    path("accounts/", include("users.urls")),
+    path("", include("posts.urls")),
     
 
 
