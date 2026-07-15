@@ -37,15 +37,15 @@ class PostDetailView(DeleteView):
     model = Post
     template_name = "posts/post_detail.html"
 
-    def post(self, request):
+    def post(self, request, *args,**kwargs):
         if not request.user.is_authenticated:
             return redirect("login")
         self.object = self.get_object()
         comment_text = request.POST.get("text", "").strip()
 
         if comment_text:
-            Comment.object.create(
-                post= self.object.user,
+            Comment.objects.create(
+                post= self.object,
                 author = request.user,
                 text=comment_text
             )
@@ -63,7 +63,7 @@ class PostCreateView(LoginRequiredMixin,View):
         return render (request,self.template_name,{"title_value":"", "text_value":"","errors":{}})
 
 
-    def get(self,request):
+    def post(self,request):
         data,errors = validate_post_data(request)
 
         if errors:
