@@ -92,7 +92,7 @@ class AuthorRequiredMixin(UserPassesTestMixin):
             self.object = get_object_or_404(Post, pk=self.kwargs["pk"])
         return self.object
 
-    def text_func(self):
+    def test_func(self):
         obj = self.get_object()
         return obj.author == self.request.user
 

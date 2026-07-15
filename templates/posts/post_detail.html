@@ -21,8 +21,8 @@
              {% endif %}
             {% if user == post.author %}
             <div>
-            <a href="% url 'post_update' post.pk">Редактировать</a>
-            <a href="% url 'post_delete' post.pk">Удалить</a>
+            <a href="{% url 'post_update' post.pk%}">Редактировать</a>
+            <a href="{% url 'post_delete' post.pk%}">Удалить</a>
             </div>
              {% endif %}
         </div>
@@ -45,7 +45,7 @@
                 <a href="" class="text-blue-500 hover:underline">Войдите</a>, чтобы оставить Коментарии
             </div>
             {% endif %}
-            <div class="mt-4 flex flex-cql gap-3">
+            <div class="mt-4 flex flex-col gap-3">
             {% for comment in post.comments.all%} 
              <div>
             <p class="text-sm text-zinc-800">
